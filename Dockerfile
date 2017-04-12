@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.5
 
 ARG depends="py-pip py-lxml"
 ARG make_depends="build-base git libffi-dev linux-headers openssl-dev python-dev"
