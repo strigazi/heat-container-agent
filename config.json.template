@@ -201,7 +201,7 @@
                         "CAP_SYSLOG",
                         "CAP_WAKE_ALARM",
                         "CAP_BLOCK_SUSPEND",
-                        "CAP_AUDIT_READ+EIP"
+                        "CAP_AUDIT_READ"
                 ],
                 "cwd": "/",
                 "env": [
