@@ -30,6 +30,56 @@
         },
         "mounts": [
                 {
+                        "type": "bind",
+                        "source": "/run/systemd",
+                        "destination": "/run/systemd",
+                        "options": [
+                                "rbind",
+                                "ro",
+                                "rprivate"
+                        ]
+                },
+                {
+                        "type": "bind",
+                        "source": "/etc/sysconfig",
+                        "destination": "/etc/sysconfig",
+                        "options": [
+                                "rbind",
+                                "ro",
+                                "rprivate"
+                        ]
+                },
+                {
+                        "type": "bind",
+                        "source": "/etc/systemd",
+                        "destination": "/etc/systemd",
+                        "options": [
+                                "rbind",
+                                "ro",
+                                "rprivate"
+                        ]
+                },
+                {
+                        "type": "bind",
+                        "source": "/var/lib/heat-cfntools",
+                        "destination": "/var/lib/heat-cfntools",
+                        "options": [
+                                "rbind",
+                                "ro",
+                                "rprivate"
+                        ]
+                },
+                {
+                        "type": "bind",
+                        "source": "/var/lib/cloud",
+                        "destination": "/var/lib/cloud",
+                        "options": [
+                                "rbind",
+                                "ro",
+                                "rprivate"
+                        ]
+                },
+                {
                         "destination": "/proc",
                         "source": "proc",
                         "type": "proc"
