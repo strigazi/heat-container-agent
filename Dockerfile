@@ -43,4 +43,4 @@ COPY init.sh /exports/hostfs/usr/bin
 COPY manifest.json service.template config.json.template /exports/
 
 # Execution
-CMD ["/usr/bin/init.sh"]
+CMD ["/usr/bin/os-collect-config"]
