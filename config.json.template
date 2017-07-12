@@ -55,21 +55,41 @@
                 },
                 {
                         "type": "bind",
-                        "source": "/var/lib/heat-cfntools",
-                        "destination": "/var/lib/heat-cfntools",
+                        "source": "/var/lib",
+                        "destination": "/var/lib",
                         "options": [
                                 "rbind",
-                                "ro",
+                                "rw",
+                                "mode=755"
+                        ]
+                },
+                {
+                        "type": "bind",
+                        "source": "/var/run",
+                        "destination": "/var/run",
+                        "options": [
+                                "rbind",
+                                "rw",
                                 "rprivate"
                         ]
                 },
                 {
                         "type": "bind",
-                        "source": "/var/lib/cloud",
-                        "destination": "/var/lib/cloud",
+                        "source": "/var/log",
+                        "destination": "/var/log",
                         "options": [
                                 "rbind",
-                                "ro",
+                                "rw",
+                                "rprivate"
+                        ]
+                },
+                {
+                        "type": "bind",
+                        "source": "/tmp",
+                        "destination": "/tmp",
+                        "options": [
+                                "rbind",
+                                "rw",
                                 "rprivate"
                         ]
                 },
@@ -155,7 +175,8 @@
         },
         "process": {
                 "args": [
-                        "/usr/bin/os-collect-config"
+                        "/usr/bin/os-collect-config",
+                        "-d"
                 ],
                 "capabilities": {
                         "bounding": [
