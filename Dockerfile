@@ -37,9 +37,6 @@ ADD ./scripts/configure_container_agent.sh /tmp/
 RUN chmod 700 /tmp/configure_container_agent.sh
 RUN /tmp/configure_container_agent.sh
 
-# "Init script"
-RUN mkdir -p /exports/hostfs/usr/bin
-COPY init.sh /exports/hostfs/usr/bin
 COPY manifest.json service.template config.json.template /exports/
 
 # Execution
