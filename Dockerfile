@@ -22,22 +22,28 @@ RUN dnf -y --setopt=tsflags=nodocs install \
 RUN pip install --no-cache dpath docker-compose
 
 ADD ./scripts/55-heat-config \
-  /opt/stack/os-config-refresh/configure.d/
+  /opt/heat-container-agent/scripts/
 
 ADD ./scripts/50-heat-config-docker-compose \
-  /opt/stack/os-config-refresh/configure.d/
+  /opt/heat-container-agent/scripts/
 
 ADD ./scripts/hooks/* \
-  /var/lib/heat-config/hooks/
+  /opt/heat-container-agent/hooks/
 
 ADD ./scripts/heat-config-notify \
   /usr/bin/heat-config-notify
+RUN chmod 755 /usr/bin/heat-config-notify
 
-ADD ./scripts/configure_container_agent.sh /tmp/
-RUN chmod 700 /tmp/configure_container_agent.sh
-RUN /tmp/configure_container_agent.sh
+ADD ./scripts/configure_container_agent.sh /opt/heat-container-agent/
+RUN chmod 700 /opt/heat-container-agent/configure_container_agent.sh
+
+ADD ./scripts/write-os-apply-config-templates.sh /tmp
+RUN chmod 700 /tmp/write-os-apply-config-templates.sh
+RUN /tmp/write-os-apply-config-templates.sh
 
 COPY manifest.json service.template config.json.template tmpfiles.template /exports/
 
+COPY launch /usr/bin/start-heat-container-agent
+
 # Execution
-CMD ["/usr/bin/os-collect-config"]
+CMD ["/usr/bin/start-heat-container-agent"]

@@ -25,6 +25,16 @@
         "mounts": [
                 {
                         "type": "bind",
+                        "source": "/opt/stack/os-config-refresh",
+                        "destination": "/opt/stack/os-config-refresh",
+                        "options": [
+                                "rbind",
+                                "rw",
+                                "rprivate"
+                        ]
+                },
+                {
+                        "type": "bind",
                         "source": "/run/systemd",
                         "destination": "/run/systemd",
                         "options": [
@@ -35,21 +45,11 @@
                 },
                 {
                         "type": "bind",
-                        "source": "/etc/sysconfig",
-                        "destination": "/etc/sysconfig",
+                        "source": "/etc/",
+                        "destination": "/etc/",
                         "options": [
                                 "rbind",
-                                "ro",
-                                "rprivate"
-                        ]
-                },
-                {
-                        "type": "bind",
-                        "source": "/etc/systemd",
-                        "destination": "/etc/systemd",
-                        "options": [
-                                "rbind",
-                                "ro",
+                                "rw",
                                 "rprivate"
                         ]
                 },
@@ -60,7 +60,7 @@
                         "options": [
                                 "rbind",
                                 "rw",
-                                "mode=755"
+                                "rprivate"
                         ]
                 },
                 {
@@ -175,8 +175,7 @@
         },
         "process": {
                 "args": [
-                        "/usr/bin/os-collect-config",
-                        "-d"
+                        "/usr/bin/start-heat-container-agent"
                 ],
                 "capabilities": {
                         "bounding": [
