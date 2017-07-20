@@ -21,6 +21,15 @@ RUN dnf -y --setopt=tsflags=nodocs install \
 # install docker-compose
 RUN pip install --no-cache dpath docker-compose
 
+# patch heatclient
+RUN sed -i 's/parse\.quote(encodeutils\.safe_encode(template_version),\ '"'"''"'"'))/parse\.quote(encodeutils\.safe_encode(template_version)))/' /usr/lib/python2.7/site-packages/heatclient/v1/template_versions.py && \
+sed -i 's/server_id,\ '"'"''"'"'))/server_id)/' /usr/lib/python2.7/site-packages/heatclient/v1/software_deployments.py && \
+sed -i 's/parse\.quote(encodeutils\.safe_encode(resource_name),\ '"'"''"'"'))/parse\.quote(encodeutils\.safe_encode(resource_name)))/' /usr/lib/python2.7/site-packages/heatclient/v1/resources.py && \
+sed -i 's/parse\.quote(stack_id,\ '"'"''"'"')/parse\.quote(stack_id)/' /usr/lib/python2.7/site-packages/heatclient/v1/resources.py && \
+sed -i 's/parse\.quote(encodeutils\.safe_encode(resource_type),\ '"'"''"'"'))/parse\.quote(encodeutils\.safe_encode(resource_type)))/' /usr/lib/python2.7/site-packages/heatclient/v1/resource_types.py && \
+sed -i 's/parse\.quote(encodeutils\.safe_encode(resource_name),\ '"'"''"'"'))/parse\.quote(encodeutils\.safe_encode(resource_name)))/' /usr/lib/python2.7/site-packages/heatclient/v1/events.py && \
+sed -i 's/parse\.quote(stack_id,\ '"'"''"'"')/parse\.quote(stack_id)/' /usr/lib/python2.7/site-packages/heatclient/v1/events.py
+
 ADD ./scripts/55-heat-config \
   /opt/heat-container-agent/scripts/
 
