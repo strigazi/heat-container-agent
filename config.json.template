@@ -352,6 +352,7 @@
                 "cwd": "/",
                 "env": [
                         "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                        "SYSTEMD_IGNORE_CHROOT=1",
                         "TERM=xterm"
                 ],
                 "rlimits": [
