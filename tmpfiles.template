@@ -6,3 +6,5 @@ d    /var/run/os-collect-config - - - - -
 Z    /var/run/os-collect-config - - - - -
 d    /opt/stack/os-config-refresh - - - - -
 Z    /opt/stack/os-config-refresh - - - - -
+d    /srv/magnum - - - - -
+Z    /srv/magnum - - - - -

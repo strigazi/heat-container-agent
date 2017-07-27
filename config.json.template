@@ -25,6 +25,16 @@
         "mounts": [
                 {
                         "type": "bind",
+                        "source": "/srv/magnum",
+                        "destination": "/srv/magnum",
+                        "options": [
+                                "rbind",
+                                "rw",
+                                "rprivate"
+                        ]
+                },
+                {
+                        "type": "bind",
                         "source": "/opt/stack/os-config-refresh",
                         "destination": "/opt/stack/os-config-refresh",
                         "options": [
