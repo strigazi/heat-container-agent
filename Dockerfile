@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:25
+FROM registry.fedoraproject.org/fedora:rawhide
 
 # Fill out the labels
 LABEL name="heat-container-agent" \
@@ -14,8 +14,8 @@ LABEL name="heat-container-agent" \
 RUN dnf -y --setopt=tsflags=nodocs install \
     findutils os-collect-config os-apply-config \
     os-refresh-config dib-utils python-pip python-docker-py \
-    python-yaml python-zaqarclient && \
-    dnf clean all
+    python-yaml python-zaqarclient python2-oslo-log \
+    python-psutil && dnf clean all
 
 # pip installing dpath as python-dpath is an older version of dpath
 # install docker-compose
